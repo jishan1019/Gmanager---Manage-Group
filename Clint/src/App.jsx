@@ -9,7 +9,7 @@ function App() {
       <div className="min-h-[calc(100vh-100px)]">
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

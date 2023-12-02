@@ -29,7 +29,13 @@ async function run() {
     // await client.db("bongo_sports_db").command({ ping: 1 });
 
     // Db Collection Code Here---------------------
-    const db = client.db("bongo_sports_db");
+    const db = client.db("gmanager_db");
+    const userCollection = db.collection("user");
+
+    app.get("/user", async (req, res) => {
+      const user = await userCollection.find().toArray();
+      res.send(user);
+    });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
@@ -43,7 +49,7 @@ run().catch(console.dir);
 
 //Local Code here---------------
 app.get("/", (req, res) => {
-  res.send("Bongo Sports Running...");
+  res.send("GManager Running...");
 });
 
 app.listen(port, () => {
