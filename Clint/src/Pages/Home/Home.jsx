@@ -33,7 +33,9 @@ const Home = () => {
 
     const searchUserResult = users.filter(
       (name) =>
-        name?.first_name === clientName || name?.last_name === clientName
+        name?.first_name === clientName ||
+        name?.last_name === clientName ||
+        `${name?.first_name} ${name?.last_name}` === clientName
     );
     setFilterUser(searchUserResult);
     console.log("input is", clientName, searchUserResult);
