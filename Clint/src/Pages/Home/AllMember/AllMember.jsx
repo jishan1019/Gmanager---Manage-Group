@@ -1,8 +1,9 @@
 import React from "react";
 import Loader from "../../../Components/ErrorPage/Loader/Loader";
 
-const AllMember = ({ users, loading }) => {
-  const userData = users;
+const AllMember = ({ userAction }) => {
+  const { filterUsers, loading, setClientName, handelSearch } =
+    userAction || {};
 
   return (
     <div>
@@ -15,9 +16,13 @@ const AllMember = ({ users, loading }) => {
             name=""
             id=""
             placeholder="Enter clints name"
+            onChange={(event) => setClientName(event.target.value)}
           />
 
-          <button className="bgPrimary text-white py-[9.5px] px-3">
+          <button
+            onClick={() => handelSearch()}
+            className="bgPrimary text-white py-[9.5px] px-3"
+          >
             Search
           </button>
         </div>
@@ -41,8 +46,8 @@ const AllMember = ({ users, loading }) => {
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 px-2 lg:px-0">
-            {userData?.map((user, index) => (
-              <div key={index} className="card w-full bg-base-100 shadow-xl">
+            {filterUsers?.map((user, index) => (
+              <div key={index} className="card w-full bg-base-100 shadow-lg">
                 <figure>
                   <img
                     className="h-16 w-16 mt-3 rounded-full border"

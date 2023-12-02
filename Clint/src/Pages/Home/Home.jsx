@@ -4,7 +4,9 @@ import ChartInfo from "./ChartInfo/ChartInfo";
 
 const Home = () => {
   const [users, setUser] = useState([]);
+  const [filterUsers, setFilterUser] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [clientName, setClientName] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -13,7 +15,8 @@ const Home = () => {
         const response = await fetch("http://localhost:4000/user");
         const data = await response.json();
         setLoading(false);
-        setUser(data.slice(0, 10));
+        setUser(data);
+        setFilterUser(users);
       } catch (error) {
         setLoading(false);
         console.error("Error fetching data:", error);
@@ -23,6 +26,26 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const handelSearch = () => {
+    if (clientName === "") {
+      return setFilterUser(users);
+    }
+
+    const searchUserResult = users.filter(
+      (name) =>
+        name?.first_name === clientName || name?.last_name === clientName
+    );
+    setFilterUser(searchUserResult);
+    console.log("input is", clientName, searchUserResult);
+  };
+
+  const userAction = {
+    filterUsers,
+    loading,
+    setClientName,
+    handelSearch,
+  };
+
   console.log(users);
 
   return (
@@ -31,7 +54,7 @@ const Home = () => {
         <ChartInfo />
       </div>
       <div className="member hidden lg:block w-full lg:w-[75%] min-h-screen  bg-[#DDDDDD] px-2 lg:px-6 py-5">
-        <AllMember users={users} loading={loading} />
+        <AllMember userAction={userAction} />
       </div>
     </div>
   );

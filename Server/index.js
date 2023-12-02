@@ -34,7 +34,7 @@ async function run() {
 
     app.get("/user", async (req, res) => {
       const user = await userCollection.find().toArray();
-      res.send(user);
+      res.send(user.slice(0, 5));
     });
 
     console.log(
