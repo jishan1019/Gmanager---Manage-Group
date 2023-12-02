@@ -18,7 +18,7 @@ const Header = () => {
                     isActive ? "underline font-semibold" : "font-semibold"
                   }
                 >
-                  Home
+                  Chart
                 </NavLink>
               </li>
 
@@ -85,7 +85,7 @@ const Header = () => {
                           isActive ? "underline font-semibold" : "font-semibold"
                         }
                       >
-                        Home
+                        Chart
                       </NavLink>
                     </li>
 

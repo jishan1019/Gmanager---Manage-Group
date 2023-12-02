@@ -5,10 +5,10 @@ import ChartInfo from "./ChartInfo/ChartInfo";
 const Home = () => {
   return (
     <div className="flex">
-      <div className="chart lg:w-[25%] w-full bg-slate-200">
+      <div className="chart lg:w-[25%] w-full bg-white">
         <ChartInfo />
       </div>
-      <div className="member hidden lg:block w-[75%] bg-slate-300">
+      <div className="member hidden lg:block w-[75%] h-screen bg-[#DDDDDD]">
         <AllMember />
       </div>
     </div>
